@@ -45,7 +45,7 @@ func handle_interact(delta):
 	if(!ableToTalk):
 		return
 	handle_interact_anim(delta);
-	if(!Input.is_action_pressed("interact")):
+	if(!Input.is_action_just_pressed("interact")):
 		return
 	if(talkTo == null):
 		return;
