@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgmuix6bc67yk"]
+
+[ext_resource type="Script" path="res://Objects/NPC/npc.gd" id="1_i8ehr"]
+[ext_resource type="Script" path="res://Objects/NPC/talkable_zone.gd" id="2_ou8x0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ow2py"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4p4ob"]
+size = Vector2(60, 64)
+
+[node name="Npc" type="StaticBody2D"]
+script = ExtResource("1_i8ehr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ow2py")
+
+[node name="TalkableZone" type="Area2D" parent="."]
+script = ExtResource("2_ou8x0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkableZone"]
+shape = SubResource("RectangleShape2D_4p4ob")

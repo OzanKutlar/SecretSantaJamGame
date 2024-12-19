@@ -27,13 +27,32 @@ func _physics_process(delta):
 	handle_movement(delta)
 	state_handler(delta)
 	handle_size(delta)
+	handle_interact(delta)
 
 var sizeProgress = 0
 var sizeDirection = 0
+var ableToTalk = false
+var talkTo = null;
 @onready var originalSize = self.scale
 @onready var targetSize = originalSize * 1.2
 
 @export var jumpSizeSpeed = 2
+
+func handle_interact(delta):
+	if(not ableToTalk):
+		return
+	handle_interact_anim(delta);
+	if(not Input.is_action_pressed("interact")):
+		return
+	if(talkTo == null):
+		return;
+	print("NPC Talked with Value : " + talkTo.start_quest)
+	
+	
+	
+func handle_interact_anim(delta):
+	# Implement ME!
+	return;
 
 func handle_size(delta):
 	# Update sizeProgress based on sizeDirection and delta
@@ -44,7 +63,7 @@ func handle_size(delta):
 
 	# Lerp between the original size and target size based on sizeProgress
 	self.scale = originalSize.lerp(targetSize, sizeProgress)
-
+	
 	# If the sizeProgress reaches 1, change direction (optional)
 	if sizeProgress == 1:
 		sizeDirection = -1  # Reverse the direction to shrink
