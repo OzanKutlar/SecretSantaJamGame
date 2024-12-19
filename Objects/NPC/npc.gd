@@ -14,4 +14,4 @@ extends StaticBody2D
 func getDialogue():
 	
 	
-	return "";
+	return start_quest;
