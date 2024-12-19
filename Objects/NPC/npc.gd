@@ -10,3 +10,8 @@ extends StaticBody2D
 @export var npc_name = "Default";
 
 @export var isTalkable = false;
+
+func getDialogue():
+	
+	
+	return "";

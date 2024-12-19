@@ -4,9 +4,10 @@
 [ext_resource type="Script" path="res://Objects/NPC/talkable_zone.gd" id="2_ou8x0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ow2py"]
+size = Vector2(16, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4p4ob"]
-size = Vector2(60, 64)
+size = Vector2(96, 96)
 
 [node name="Npc" type="StaticBody2D"]
 script = ExtResource("1_i8ehr")

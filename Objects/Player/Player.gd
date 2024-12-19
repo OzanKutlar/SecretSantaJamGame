@@ -15,9 +15,12 @@ var stopped_time = 0
 var initial_position = Vector2.ZERO
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var collisionBox = $CollisionShape2D
 var random_animation_time = 0.0
 
 var last_rotation = 0.0
+
+const ninetyDegree = (PI/2);
 
 var externalForce = Vector2(0,0)
 
@@ -46,7 +49,7 @@ func handle_interact(delta):
 		return
 	if(talkTo == null):
 		return;
-	print("NPC Talked with Value : " + talkTo.start_quest)
+	print("NPC Talked with Value : " + talkTo.getDialogue())
 	
 	
 	
@@ -101,8 +104,12 @@ func handle_movement(_delta):
 
 	if move_direction != Vector2.ZERO:
 		animated_sprite.rotation = last_rotation
+		collisionBox.rotation = last_rotation + ninetyDegree
 	else:
 		animated_sprite.rotation = last_rotation
+		collisionBox.rotation = last_rotation + ninetyDegree
+	
+	
 	velocity = (move_direction.normalized() + externalForce) * SPEED
 	move_and_slide()
 
