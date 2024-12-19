@@ -25,7 +25,7 @@ var cameraOffset = Vector2(0,0)
 
 func _physics_process(delta):
 	handle_movement(delta)
-	state_handler(delta)
+	#state_handler(delta)
 	handle_size(delta)
 	handle_interact(delta)
 
@@ -39,10 +39,10 @@ var talkTo = null;
 @export var jumpSizeSpeed = 2
 
 func handle_interact(delta):
-	if(not ableToTalk):
+	if(!ableToTalk):
 		return
 	handle_interact_anim(delta);
-	if(not Input.is_action_pressed("interact")):
+	if(!Input.is_action_pressed("interact")):
 		return
 	if(talkTo == null):
 		return;
