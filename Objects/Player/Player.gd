@@ -51,6 +51,7 @@ func handle_interact(delta):
 		return
 	if(talkTo == null):
 		return;
+	talkTo.interact_with_npc(self)
 	print("NPC Talked with Value : " + talkTo.getDialogue())
 	
 	

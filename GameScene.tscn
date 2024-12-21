@@ -68,6 +68,16 @@ position = Vector2(-184, 2)
 scale = Vector2(3.41975, 3.41975)
 npc_name = "Test - Sheep"
 isTalkable = true
+missionToGive = {
+"Currently Collected": 0,
+"Mission Given By": "Default",
+"Mission Goal": 1,
+"Mission Item": 12,
+"Mission Name": "Collect Fruits for Smokey the Bear",
+"Mission Reward": "Gold",
+"Mission State": 1,
+"Reward Amount": 100
+}
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Npc"]
 position = Vector2(0, -15)
