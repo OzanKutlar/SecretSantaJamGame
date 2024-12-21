@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://6a6t4yick2h7"]
+[gd_scene load_steps=11 format=3 uid="uid://6a6t4yick2h7"]
 
 [ext_resource type="PackedScene" uid="uid://dlu26gpugixvu" path="res://Objects/Player/Player.tscn" id="1_fu7b4"]
 [ext_resource type="PackedScene" uid="uid://dgmuix6bc67yk" path="res://Objects/NPC/NPC.tscn" id="2_lw1mj"]
+[ext_resource type="Script" path="res://StandAloneScripts/CameraFixLocation.gd" id="2_qjm1i"]
 [ext_resource type="Texture2D" uid="uid://bacalmb0d33ey" path="res://Resources/Sprites/BearIdle.png" id="3_7pc2s"]
+[ext_resource type="PackedScene" uid="uid://4xucd7dacd1v" path="res://Objects/Mission/MissionBox.tscn" id="3_yiyuy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awa5b"]
 atlas = ExtResource("3_7pc2s")
@@ -43,14 +45,27 @@ animations = [{
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_fu7b4")]
-position = Vector2(0, -1)
+position = Vector2(231, 124)
+scale = Vector2(5.6, 5.6)
 camera = NodePath("../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+script = ExtResource("2_qjm1i")
+label_objects = [{
+"label": NodePath("MissionBox"),
+"xOffset": -300,
+"yOffset": 20
+}]
+
+[node name="MissionBox" parent="Camera2D" instance=ExtResource("3_yiyuy")]
+offset_left = 256.0
+offset_top = -321.0
+offset_right = 636.0
+offset_bottom = -137.0
 
 [node name="Npc" parent="." instance=ExtResource("2_lw1mj")]
-position = Vector2(78, 0)
+position = Vector2(-184, 2)
+scale = Vector2(3.41975, 3.41975)
 npc_name = "Test - Sheep"
 isTalkable = true
 
