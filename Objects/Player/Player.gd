@@ -3,8 +3,8 @@ extends CharacterBody2D
 enum State {
 	IDLE,
 	RUN,
-	IDLE_TRANSFORMATION,
-	STANDUP_IDLE
+	JUMP_START,
+	JUMP,
 }
 var current_state = State.IDLE
 
@@ -21,22 +21,19 @@ var initial_position = Vector2.ZERO
 @onready var collisionBox = $CollisionShape2D
 var random_animation_time = 0.0
 
-var last_rotation = 0.0
-
-const ninetyDegree = (PI/2);
-
 var externalForce = Vector2(0,0)
 
 var cameraOffset = Vector2(0,0)
 
 func _physics_process(delta):
 	handle_movement(delta)
-	#state_handler(delta)
+	state_handler(delta)
 	handle_size(delta)
 	handle_interact(delta)
 
 var sizeProgress = 0
 var sizeDirection = 0
+
 var ableToTalk = false
 var talkTo = null;
 @onready var originalSize = self.scale
@@ -92,18 +89,18 @@ func handle_movement(_delta):
 	var move_direction = Vector2(direction, direction_y)
 	
 	if Input.is_action_just_pressed("jump") && sizeDirection == 0:
+		current_state = State.JUMP_START
 		sizeDirection = 1
 
-	if move_direction != Vector2.ZERO:
-		current_state = State.RUN
-		last_rotation = move_direction.angle()
-	else:
-		if current_state != State.IDLE_TRANSFORMATION and current_state != State.STANDUP_IDLE:
-			current_state = State.IDLE
-		elif current_state == State.IDLE_TRANSFORMATION:
+	if current_state != State.JUMP:
+		if sizeDirection != 0:
 			frameChanged()
+		elif move_direction != Vector2.ZERO:
+			current_state = State.RUN
 		else:
-			current_state = State.STANDUP_IDLE
+			current_state = State.IDLE
+	else:
+		frameChanged()
 
 	if direction > 0:
 		animated_sprite.flip_h = false;
@@ -117,29 +114,23 @@ func handle_movement(_delta):
 func state_handler(delta):
 	match current_state:
 		State.IDLE:
-			if stopped_time >= TRANSFORMATION_DELAY:
-				stopped_time = 0
-				current_state = State.IDLE_TRANSFORMATION
-			else:
-				animated_sprite.play("rat_idle1")
+			animated_sprite.play("idle")
 		State.RUN:
-			animated_sprite.play("rat_run")
-		State.IDLE_TRANSFORMATION:
-			if animated_sprite.animation != "IdleTransformation":
-				animated_sprite.play("IdleTransformation")
-		State.STANDUP_IDLE:
-			random_animation_time -= delta
-			if animated_sprite.frame == animated_sprite.sprite_frames.get_frame_count(animated_sprite.animation) - 1:
-				if randi() % 50 == 1:
-					animated_sprite.play("rat_idle3")
-				else:
-					animated_sprite.play("rat_idle2")
-				random_animation_time = 1.0
+			animated_sprite.play("run")
+		State.JUMP:
+			if sizeDirection != 0:
+				animated_sprite.play("jump_mid")
+			else:
+				animated_sprite.play("jump_end")
+		State.JUMP_START:
+			animated_sprite.play("jump_start")
 
 func frameChanged():
 	if animated_sprite.frame == animated_sprite.sprite_frames.get_frame_count(animated_sprite.animation) - 1:
 		animEnd(animated_sprite.animation)
 
 func animEnd(animation_name):
-	if animation_name == "IdleTransformation":
-		current_state = State.STANDUP_IDLE
+	if animation_name == "jump_start":
+		current_state = State.JUMP
+	elif animation_name == "jump_end":
+		current_state = State.IDLE
