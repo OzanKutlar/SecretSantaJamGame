@@ -105,12 +105,10 @@ func handle_movement(_delta):
 		else:
 			current_state = State.STANDUP_IDLE
 
-	if move_direction != Vector2.ZERO:
-		animated_sprite.rotation = last_rotation
-		collisionBox.rotation = last_rotation + ninetyDegree
-	else:
-		animated_sprite.rotation = last_rotation
-		collisionBox.rotation = last_rotation + ninetyDegree
+	if direction > 0:
+		animated_sprite.flip_h = false;
+	elif direction < 0:
+		animated_sprite.flip_h = true;
 	
 	
 	velocity = (move_direction.normalized() + externalForce) * SPEED
