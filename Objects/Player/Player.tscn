@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dlu26gpugixvu"]
+[gd_scene load_steps=25 format=3 uid="uid://dlu26gpugixvu"]
 
 [ext_resource type="Script" path="res://Objects/Player/Player.gd" id="1_27nus"]
 [ext_resource type="Texture2D" uid="uid://bfjpnlyphs52g" path="res://Resources/Sprites/SheepIdle.png" id="2_q7npr"]
@@ -42,10 +42,6 @@ region = Rect2(0, 51, 18, 17)
 [sub_resource type="AtlasTexture" id="AtlasTexture_s1se8"]
 atlas = ExtResource("4_cijlm")
 region = Rect2(0, 0, 19, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iv1ly"]
-atlas = ExtResource("5_ovlvf")
-region = Rect2(0, 0, 18, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jpbir"]
 atlas = ExtResource("5_ovlvf")
@@ -121,9 +117,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iv1ly")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_jpbir")
 }, {
 "duration": 1.0,
@@ -163,9 +156,8 @@ script = ExtResource("1_27nus")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hurxa")
-animation = &"run"
+animation = &"jump_start"
 autoplay = "idle"
-frame_progress = 0.566632
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
