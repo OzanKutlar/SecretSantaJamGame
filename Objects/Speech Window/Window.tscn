@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8lt625hjh8ji"]
+
+[ext_resource type="Script" path="res://Objects/Speech Window/DialogueBox.gd" id="1_y0s4o"]
+[ext_resource type="Texture2D" uid="uid://bipnhkgs3c1et" path="res://Resources/Sprites/dialogueBox.png" id="2_4a0ta"]
+[ext_resource type="Script" path="res://Objects/Speech Window/text.gd" id="2_jr1fv"]
+
+[node name="Window" type="Node2D"]
+script = ExtResource("1_y0s4o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.00006, 8)
+scale = Vector2(15.25, 15.25)
+texture = ExtResource("2_4a0ta")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.984
+offset_left = -1487.0
+offset_top = -253.0
+offset_right = -1135.0
+offset_bottom = -181.0
+scale = Vector2(8.3366, 8.3366)
+bbcode_enabled = true
+text = "AAAAA"
+scroll_active = false
+script = ExtResource("2_jr1fv")

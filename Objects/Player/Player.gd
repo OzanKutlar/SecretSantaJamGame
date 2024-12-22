@@ -3,7 +3,7 @@ extends CharacterBody2D
 enum State {
 	IDLE,
 	RUN,
-	IDLE_TRANSFORMATION,
+	JUMP,
 	STANDUP_IDLE
 }
 var current_state = State.IDLE
@@ -122,9 +122,9 @@ func state_handler(delta):
 				stopped_time = 0
 				current_state = State.IDLE_TRANSFORMATION
 			else:
-				animated_sprite.play("rat_idle1")
+				animated_sprite.play("idle")
 		State.RUN:
-			animated_sprite.play("rat_run")
+			animated_sprite.play("run")
 		State.IDLE_TRANSFORMATION:
 			if animated_sprite.animation != "IdleTransformation":
 				animated_sprite.play("IdleTransformation")
