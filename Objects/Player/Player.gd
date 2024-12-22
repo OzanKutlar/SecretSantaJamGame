@@ -11,6 +11,7 @@ var current_state = State.IDLE
 const SPEED = 150.0
 const TRANSFORMATION_DELAY = 5 * 60
 var stopped_time = 0
+var isSafe = false
 @export var camera: Camera2D = null
 @export var mission_controller: RichTextLabel
 @export var talkBox: Node2D
