@@ -8,7 +8,7 @@ enum State {
 }
 var current_state = State.IDLE
 
-const SPEED = 500.0
+const SPEED = 150.0
 const TRANSFORMATION_DELAY = 5 * 60
 var stopped_time = 0
 @export var camera: Camera2D = null
