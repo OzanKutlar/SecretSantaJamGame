@@ -21,6 +21,9 @@ var mission_id = -1
 	"Reward Amount": 100
 }
 
+func _ready() -> void:
+	animated_sprite.play("idle")
+
 func getDialogue():
 	match questState:
 		0:
