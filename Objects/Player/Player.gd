@@ -3,7 +3,7 @@ extends CharacterBody2D
 enum State {
 	IDLE,
 	RUN,
-	JUMP,
+	IDLE_TRANSFORMATION,
 	STANDUP_IDLE
 }
 var current_state = State.IDLE
@@ -13,7 +13,6 @@ const TRANSFORMATION_DELAY = 5 * 60
 var stopped_time = 0
 @export var camera: Camera2D = null
 @export var mission_controller: RichTextLabel
-@export var talkBox: Node2D
 var initial_position = Vector2.ZERO
 
 @onready var animated_sprite = $AnimatedSprite2D
@@ -52,6 +51,7 @@ func handle_interact(delta):
 	if(talkTo == null):
 		return;
 	talkTo.interact_with_npc(self)
+	print("NPC Talked with Value : " + talkTo.getDialogue())
 	
 	
 	
@@ -122,9 +122,9 @@ func state_handler(delta):
 				stopped_time = 0
 				current_state = State.IDLE_TRANSFORMATION
 			else:
-				animated_sprite.play("idle")
+				animated_sprite.play("rat_idle1")
 		State.RUN:
-			animated_sprite.play("run")
+			animated_sprite.play("rat_run")
 		State.IDLE_TRANSFORMATION:
 			if animated_sprite.animation != "IdleTransformation":
 				animated_sprite.play("IdleTransformation")
