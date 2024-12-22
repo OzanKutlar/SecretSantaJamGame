@@ -1,67 +1,107 @@
-[gd_scene load_steps=11 format=3 uid="uid://6a6t4yick2h7"]
+[gd_scene load_steps=16 format=3 uid="uid://6a6t4yick2h7"]
 
 [ext_resource type="PackedScene" uid="uid://dlu26gpugixvu" path="res://Objects/Player/Player.tscn" id="1_fu7b4"]
 [ext_resource type="PackedScene" uid="uid://dgmuix6bc67yk" path="res://Objects/NPC/NPC.tscn" id="2_lw1mj"]
 [ext_resource type="Script" path="res://StandAloneScripts/CameraFixLocation.gd" id="2_qjm1i"]
 [ext_resource type="Texture2D" uid="uid://bacalmb0d33ey" path="res://Resources/Sprites/BearIdle.png" id="3_7pc2s"]
 [ext_resource type="PackedScene" uid="uid://4xucd7dacd1v" path="res://Objects/Mission/MissionBox.tscn" id="3_yiyuy"]
+[ext_resource type="Texture2D" uid="uid://dnew6id15su5v" path="res://Resources/Sprites/OtterIdle.png" id="6_atrtq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_awa5b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghjm1"]
 atlas = ExtResource("3_7pc2s")
 region = Rect2(0, 0, 34, 37)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ewhn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni71c"]
 atlas = ExtResource("3_7pc2s")
 region = Rect2(0, 37, 34, 37)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5it3k"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_an1ga"]
 atlas = ExtResource("3_7pc2s")
 region = Rect2(0, 74, 34, 37)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5htar"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymlo1"]
 atlas = ExtResource("3_7pc2s")
 region = Rect2(0, 111, 34, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smowp"]
+atlas = ExtResource("6_atrtq")
+region = Rect2(0, 0, 21, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbkjt"]
+atlas = ExtResource("6_atrtq")
+region = Rect2(0, 25, 21, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enka0"]
+atlas = ExtResource("6_atrtq")
+region = Rect2(0, 50, 21, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_223ym"]
+atlas = ExtResource("6_atrtq")
+region = Rect2(0, 75, 21, 25)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0psa6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_awa5b")
+"texture": SubResource("AtlasTexture_ghjm1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7ewhn")
+"texture": SubResource("AtlasTexture_ni71c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5it3k")
+"texture": SubResource("AtlasTexture_an1ga")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5htar")
+"texture": SubResource("AtlasTexture_ymlo1")
 }],
 "loop": true,
-"name": &"default",
+"name": &"bear",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smowp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbkjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enka0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_223ym")
+}],
+"loop": true,
+"name": &"otter",
 "speed": 5.0
 }]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_fu7b4")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera", "mission_controller") instance=ExtResource("1_fu7b4")]
 position = Vector2(231, 124)
 scale = Vector2(5.6, 5.6)
 camera = NodePath("../Camera2D")
+mission_controller = NodePath("../Camera2D/MissionBox")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("2_qjm1i")
 label_objects = [{
 "label": NodePath("MissionBox"),
-"xOffset": -300,
+"xOffset": -350,
 "yOffset": 20
 }]
 
 [node name="MissionBox" parent="Camera2D" instance=ExtResource("3_yiyuy")]
-offset_left = 256.0
+offset_left = 155.0
 offset_top = -321.0
-offset_right = 636.0
+offset_right = 498.0
 offset_bottom = -137.0
+bbcode_enabled = true
+text = "Current Missions : 
+
+
+"
 
 [node name="Npc" parent="." instance=ExtResource("2_lw1mj")]
 position = Vector2(-184, 2)
@@ -69,9 +109,9 @@ scale = Vector2(3.41975, 3.41975)
 npc_name = "Test - Sheep"
 isTalkable = true
 missionToGive = {
-"Currently Collected": 0,
+"Currently Collected": 2,
 "Mission Given By": "Default",
-"Mission Goal": 1,
+"Mission Goal": 4,
 "Mission Item": 12,
 "Mission Name": "Collect Fruits for Smokey the Bear",
 "Mission Reward": "Gold",
@@ -82,4 +122,13 @@ missionToGive = {
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Npc"]
 position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_0psa6")
-autoplay = "default"
+animation = &"bear"
+
+[node name="Npc2" parent="." instance=ExtResource("2_lw1mj")]
+position = Vector2(256, -400)
+scale = Vector2(5.88, 5.88)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Npc2"]
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_0psa6")
+animation = &"otter"

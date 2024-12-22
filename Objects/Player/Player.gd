@@ -12,6 +12,7 @@ const SPEED = 500.0
 const TRANSFORMATION_DELAY = 5 * 60
 var stopped_time = 0
 @export var camera: Camera2D = null
+@export var mission_controller: RichTextLabel
 var initial_position = Vector2.ZERO
 
 @onready var animated_sprite = $AnimatedSprite2D
@@ -21,8 +22,6 @@ var random_animation_time = 0.0
 var last_rotation = 0.0
 
 const ninetyDegree = (PI/2);
-
-@export var missionController: Node2D;
 
 var externalForce = Vector2(0,0)
 

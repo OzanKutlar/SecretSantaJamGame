@@ -58,7 +58,7 @@ func add_mission(name, item_id, amount, given_by, reward := 0, reward_amount := 
 func interact_with_npc(body):
 	if questState == 0:
 		# Add the mission when the quest state is 0
-		var mission_id = body.mission_contorller.add_mission(
+		var mission_id = body.mission_controller.add_mission(
 			missionToGive["Mission Name"],
 			missionToGive["Mission Item"],
 			missionToGive["Mission Goal"],

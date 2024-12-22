@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://4xucd7dacd1v"]
+
+[ext_resource type="Script" path="res://Objects/Mission/MissionController.gd" id="1_kgoyt"]
+
+[node name="MissionBox" type="RichTextLabel"]
+anchors_preset = -1
+anchor_right = 0.273
+anchor_bottom = 0.316
+offset_right = 4.504
+offset_bottom = 5.23199
+text = "Current Missions : 
+1 - Collect Fruits for Smokey the bear
+2 - Jump over fences for the sloth
+3 - Collect flowers for the monkey.
+"
+script = ExtResource("1_kgoyt")
