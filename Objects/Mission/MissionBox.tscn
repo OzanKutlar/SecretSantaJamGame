@@ -8,6 +8,7 @@ anchor_right = 0.273
 anchor_bottom = 0.316
 offset_right = 4.504
 offset_bottom = 5.23199
+bbcode_enabled = true
 text = "Current Missions : 
 1 - Collect Fruits for Smokey the bear
 2 - Jump over fences for the sloth

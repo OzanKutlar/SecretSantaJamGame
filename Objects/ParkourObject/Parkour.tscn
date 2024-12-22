@@ -1,12 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjoauehfg5hku"]
-
-[ext_resource type="Script" path="res://Objects/ParkourObject/parkour.gd" id="1_458q3"]
+[gd_scene load_steps=2 format=3 uid="uid://cjoauehfg5hku"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1xnc"]
 size = Vector2(2.25, 20)
 
 [node name="Parkour" type="StaticBody2D"]
-script = ExtResource("1_458q3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-12, 0)
