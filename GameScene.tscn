@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://6a6t4yick2h7"]
+[gd_scene load_steps=87 format=3 uid="uid://6a6t4yick2h7"]
 
 [ext_resource type="PackedScene" uid="uid://dlu26gpugixvu" path="res://Objects/Player/Player.tscn" id="1_fu7b4"]
 [ext_resource type="PackedScene" uid="uid://dgmuix6bc67yk" path="res://Objects/NPC/NPC.tscn" id="2_lw1mj"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://20njgwfygi80" path="res://Resources/Sprites/Carrot.png" id="12_ovsh2"]
 [ext_resource type="Texture2D" uid="uid://56yp0l4bjtpw" path="res://Resources/Sprites/BearEat.png" id="17_u0qth"]
 [ext_resource type="Texture2D" uid="uid://cruai72u11iid" path="res://Resources/Sprites/OtterHappy.png" id="20_jrc27"]
+[ext_resource type="AudioStream" uid="uid://rccmviyn1vyj" path="res://Resources/gameJam.mp3" id="25_tbpyl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t6v3b"]
 texture = ExtResource("11_gx5sg")
@@ -669,6 +670,7 @@ position = Vector2(-19, 360)
 start_quest = "I've recently hurt my hand and cant gather much fruit. Could you find some for me? I'll give you some hay in return."
 mid_quest = ["I heard the northern cat scream something before. Maybe she has some?", "The rabbit of the east always has some fruit on him. Maybe he can give you some?"]
 end_quest = "Amazing! Thank you for your hard work my friend!"
+post_quest = "You've won the game!"
 npc_name = "Bear"
 isTalkable = true
 missionToGive = {
@@ -905,3 +907,14 @@ itemID = 14
 [node name="Sprite2D" type="AnimatedSprite2D" parent="OtterMaze/CollectAbles/CollectAble8"]
 sprite_frames = SubResource("SpriteFrames_ibjgv")
 animation = &"new_animation"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -86.0
+offset_top = 305.0
+offset_right = 109.0
+offset_bottom = 396.0
+text = "Press e to interact"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("25_tbpyl")
+autoplay = true
