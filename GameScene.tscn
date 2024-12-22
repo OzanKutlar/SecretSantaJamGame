@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://6a6t4yick2h7"]
+[gd_scene load_steps=18 format=3 uid="uid://6a6t4yick2h7"]
 
 [ext_resource type="PackedScene" uid="uid://dlu26gpugixvu" path="res://Objects/Player/Player.tscn" id="1_fu7b4"]
 [ext_resource type="PackedScene" uid="uid://dgmuix6bc67yk" path="res://Objects/NPC/NPC.tscn" id="2_lw1mj"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bacalmb0d33ey" path="res://Resources/Sprites/BearIdle.png" id="3_7pc2s"]
 [ext_resource type="PackedScene" uid="uid://4xucd7dacd1v" path="res://Objects/Mission/MissionBox.tscn" id="3_yiyuy"]
 [ext_resource type="Texture2D" uid="uid://dnew6id15su5v" path="res://Resources/Sprites/OtterIdle.png" id="6_atrtq"]
+[ext_resource type="PackedScene" uid="uid://6ahjebk1oibc" path="res://Objects/CollectAbleItem/CollectAble.tscn" id="7_84mto"]
+[ext_resource type="PackedScene" uid="uid://b8lt625hjh8ji" path="res://Objects/Speech Window/Window.tscn" id="8_81nbj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ghjm1"]
 atlas = ExtResource("3_7pc2s")
@@ -90,7 +92,15 @@ label_objects = [{
 "label": NodePath("MissionBox"),
 "xOffset": -350,
 "yOffset": 20
+}, {
+"label": NodePath("Window"),
+"xOffset": 600,
+"yOffset": -70
 }]
+
+[node name="Window" parent="Camera2D" instance=ExtResource("8_81nbj")]
+position = Vector2(-1.99998, 274)
+scale = Vector2(0.160001, 0.160001)
 
 [node name="MissionBox" parent="Camera2D" instance=ExtResource("3_yiyuy")]
 offset_left = 155.0
@@ -104,18 +114,16 @@ text = "Current Missions :
 "
 
 [node name="Npc" parent="." instance=ExtResource("2_lw1mj")]
-position = Vector2(-184, 2)
+position = Vector2(-221, 164)
 scale = Vector2(3.41975, 3.41975)
 npc_name = "Test - Sheep"
 isTalkable = true
 missionToGive = {
-"Currently Collected": 2,
 "Mission Given By": "Default",
 "Mission Goal": 4,
-"Mission Item": 12,
-"Mission Name": "Collect Fruits for Smokey the Bear",
-"Mission Reward": "Gold",
-"Mission State": 1,
+"Mission Item": 1,
+"Mission Name": "Collect Apples for Smokey the Bear",
+"Mission Reward": 1,
 "Reward Amount": 100
 }
 
@@ -125,10 +133,29 @@ sprite_frames = SubResource("SpriteFrames_0psa6")
 animation = &"bear"
 
 [node name="Npc2" parent="." instance=ExtResource("2_lw1mj")]
-position = Vector2(256, -400)
+position = Vector2(330, -382)
 scale = Vector2(5.88, 5.88)
+isTalkable = true
+missionToGive = {
+"Mission Given By": "Default",
+"Mission Goal": 1,
+"Mission Item": 12,
+"Mission Name": "Default Mission",
+"Mission Reward": 1,
+"Reward Amount": 3
+}
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Npc2"]
 position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_0psa6")
 animation = &"otter"
+
+[node name="CollectAble" parent="." instance=ExtResource("7_84mto")]
+position = Vector2(-108, -506)
+scale = Vector2(5.95197, 5.95197)
+itemID = 12
+
+[node name="CollectAble2" parent="." instance=ExtResource("7_84mto")]
+position = Vector2(-421, -238)
+scale = Vector2(5.95197, 5.95197)
+itemID = 1

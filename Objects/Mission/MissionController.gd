@@ -3,7 +3,7 @@ extends RichTextLabel
 var mission_controller := []
 @export var player: CharacterBody2D
 
-func add_mission(name, item_id, amount, given_by, reward := "Hay", reward_amount := 10) -> int:
+func add_mission(name, item_id, amount, given_by, reward := 1, reward_amount := 10) -> int:
 	var mission = {
 		"Mission Name": name,
 		"Mission Item": item_id,
@@ -20,12 +20,15 @@ func add_mission(name, item_id, amount, given_by, reward := "Hay", reward_amount
 	update_mission_display()
 	return mission_controller.size() - 1
 
-func collect_item(itemID: int) -> void:
+func collect_item(itemID: int) -> bool:
+	var mission_found = false
+	
 	for i in range(mission_controller.size()):
 		var mission = mission_controller[i]
 		
 		# Check if the mission is active and the item matches
 		if mission["Mission State"] == 1 and mission["Mission Item"] == itemID:
+			mission_found = true
 			mission["Currently Collected"] += 1
 			
 			# Ensure it does not exceed the mission goal
@@ -37,6 +40,8 @@ func collect_item(itemID: int) -> void:
 				finish_mission(i)
 	
 	update_mission_display()
+	return mission_found
+
 
 
 func finish_mission(missionID) -> void:
