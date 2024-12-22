@@ -10,6 +10,7 @@ extends StaticBody2D
 var questState = 0
 var cycleIndex = 0
 var mission_id = -1
+@onready var animated_sprite = $AnimatedSprite2D
 
 @export var missionToGive := {
 	"Mission Name": "Default Mission",
@@ -54,6 +55,7 @@ func interact_with_npc(body):
 		if(body.mission_controller.is_mission_completed(mission_id)):
 			questState = 2
 			body.talkBox.set_dialogue(getDialogue())
+			animated_sprite.play("finished_quest")
 			
 			for i in range(missionToGive["Reward Amount"]):
 				body.mission_controller.collect_item(missionToGive["Mission Reward"]);
