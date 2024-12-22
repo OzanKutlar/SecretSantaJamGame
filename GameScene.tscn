@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://6a6t4yick2h7"]
+[gd_scene load_steps=86 format=3 uid="uid://6a6t4yick2h7"]
 
 [ext_resource type="PackedScene" uid="uid://dlu26gpugixvu" path="res://Objects/Player/Player.tscn" id="1_fu7b4"]
 [ext_resource type="PackedScene" uid="uid://dgmuix6bc67yk" path="res://Objects/NPC/NPC.tscn" id="2_lw1mj"]
@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://dx7ycp74ebeai" path="res://Resources/Sprites/Hay.png" id="4_mlw2x"]
 [ext_resource type="Texture2D" uid="uid://dnew6id15su5v" path="res://Resources/Sprites/OtterIdle.png" id="6_atrtq"]
 [ext_resource type="Texture2D" uid="uid://bhdn1s0qxol1y" path="res://Resources/Sprites/Untitled.png" id="6_bi1h4"]
+[ext_resource type="Texture2D" uid="uid://cyv7cgk4v81r2" path="res://Resources/Sprites/BabyCatSavedIdle.png" id="6_nx517"]
 [ext_resource type="PackedScene" uid="uid://6ahjebk1oibc" path="res://Objects/CollectAbleItem/CollectAble.tscn" id="7_84mto"]
+[ext_resource type="Texture2D" uid="uid://16pls3ddwyui" path="res://Resources/Sprites/apple.png" id="7_bb1f2"]
 [ext_resource type="Texture2D" uid="uid://1imnrtpmsus6" path="res://Resources/Sprites/MomCatHappyIdle.png" id="7_udysu"]
 [ext_resource type="PackedScene" uid="uid://b8lt625hjh8ji" path="res://Objects/Speech Window/Window.tscn" id="8_81nbj"]
 [ext_resource type="Texture2D" uid="uid://x1y4n0hfm7c2" path="res://Resources/Sprites/MomCatIdle.png" id="8_duukp"]
@@ -91,18 +93,39 @@ sources/1 = SubResource("TileSetAtlasSource_0vd3c")
 sources/2 = SubResource("TileSetAtlasSource_dbenh")
 sources/3 = SubResource("TileSetAtlasSource_txku2")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c63j1"]
-atlas = ExtResource("6_bi1h4")
-region = Rect2(0, 0, 16, 12)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wswql"]
+atlas = ExtResource("6_nx517")
+region = Rect2(0, 0, 13, 10)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ibjgv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_iagew"]
+atlas = ExtResource("6_nx517")
+region = Rect2(0, 10, 13, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n8a0"]
+atlas = ExtResource("6_nx517")
+region = Rect2(0, 20, 13, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k6ga"]
+atlas = ExtResource("6_nx517")
+region = Rect2(0, 30, 13, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0fys"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c63j1")
+"texture": SubResource("AtlasTexture_wswql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iagew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n8a0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4k6ga")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -449,6 +472,21 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_b3ocg"]
 radius = 7.07107
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c63j1"]
+atlas = ExtResource("6_bi1h4")
+region = Rect2(0, 0, 16, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ibjgv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c63j1")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -465,9 +503,15 @@ layer_1/tile_data = PackedInt32Array(-458750, 0, 5, -458749, 196608, 4, -458748,
 position = Vector2(39, -669)
 itemID = 12
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="TreeParkour/CollectAble"]
-sprite_frames = SubResource("SpriteFrames_ibjgv")
-animation = &""
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TreeParkour/CollectAble"]
+sprite_frames = SubResource("SpriteFrames_e0fys")
+
+[node name="CollectAble2" parent="TreeParkour" instance=ExtResource("7_84mto")]
+position = Vector2(134, -449)
+itemID = 12
+
+[node name="Sprite2D" type="Sprite2D" parent="TreeParkour/CollectAble2"]
+texture = ExtResource("7_bb1f2")
 
 [node name="Cat NPC" parent="TreeParkour" instance=ExtResource("2_lw1mj")]
 position = Vector2(-109, -42)
