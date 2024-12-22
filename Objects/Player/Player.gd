@@ -13,6 +13,7 @@ const TRANSFORMATION_DELAY = 5 * 60
 var stopped_time = 0
 @export var camera: Camera2D = null
 @export var mission_controller: RichTextLabel
+@export var talkBox: Node2D
 var initial_position = Vector2.ZERO
 
 @onready var animated_sprite = $AnimatedSprite2D
@@ -51,7 +52,6 @@ func handle_interact(delta):
 	if(talkTo == null):
 		return;
 	talkTo.interact_with_npc(self)
-	print("NPC Talked with Value : " + talkTo.getDialogue())
 	
 	
 	

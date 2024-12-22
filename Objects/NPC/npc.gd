@@ -48,23 +48,22 @@ func interact_with_npc(body):
 			missionToGive["Mission Reward"],
 			missionToGive["Reward Amount"]
 		)
-		# Log the mission ID
-		print("Mission added with ID: ", mission_id)
+		body.talkBox.set_dialogue(getDialogue())
 		questState = 1  # Update quest state to indicate progress
 	elif questState == 1:
 		if(body.mission_controller.is_mission_completed(mission_id)):
 			questState = 2
-			print(getDialogue())
+			body.talkBox.set_dialogue(getDialogue())
 			
 			for i in range(missionToGive["Reward Amount"]):
 				body.mission_controller.collect_item(missionToGive["Mission Reward"]);
 			
 			questState = 3
 		else:
-			print(getDialogue())
+			body.talkBox.set_dialogue(getDialogue())
 		
 	elif questState == 3:
 		# Post-quest dialogue
-		print(getDialogue())
+		body.talkBox.set_dialogue(getDialogue())
 	else:
 		print("Invalid state.")

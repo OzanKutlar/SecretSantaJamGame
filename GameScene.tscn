@@ -80,11 +80,12 @@ animations = [{
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera", "mission_controller") instance=ExtResource("1_fu7b4")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera", "mission_controller", "talkBox") instance=ExtResource("1_fu7b4")]
 position = Vector2(231, 124)
 scale = Vector2(5.6, 5.6)
 camera = NodePath("../Camera2D")
 mission_controller = NodePath("../Camera2D/MissionBox")
+talkBox = NodePath("../Camera2D/Window")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("2_qjm1i")
