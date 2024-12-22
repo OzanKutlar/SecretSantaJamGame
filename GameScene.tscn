@@ -508,7 +508,7 @@ sprite_frames = SubResource("SpriteFrames_e0fys")
 
 [node name="CollectAble2" parent="TreeParkour" instance=ExtResource("7_84mto")]
 position = Vector2(134, -449)
-itemID = 12
+itemID = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="TreeParkour/CollectAble2"]
 texture = ExtResource("7_bb1f2")
@@ -669,7 +669,7 @@ position = Vector2(-19, 360)
 start_quest = "I've recently hurt my hand and cant gather much fruit. Could you find some for me? I'll give you some hay in return."
 mid_quest = ["I heard the northern cat scream something before. Maybe she has some?", "The rabbit of the east always has some fruit on him. Maybe he can give you some?"]
 end_quest = "Amazing! Thank you for your hard work my friend!"
-npc_name = "Test - Sheep"
+npc_name = "Bear"
 isTalkable = true
 missionToGive = {
 "Mission Given By": "The Bear",
